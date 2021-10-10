@@ -18,10 +18,10 @@ jobs:
         run: ./install-deps.sh
       
       - name: download linux repository
-        run: wget https://github.com/0601p/linux/archive/${GITHUB_REF#refs/heads/}.zip
+        run: wget https://github.com/0601p/linux/archive/$(git rev-parse HEAD:linux).zip
 
       - name: unzip linux repository
-        run: unzip ${GITHUB_REF#refs/heads/}.zip
+        run: unzip $(git rev-parse HEAD:linux).zip
         
       - name: build linux
-        run: ./build-linux.sh ${GITHUB_REF#refs/heads/} tinyconfig
+        run: ./build-linux.sh $(git rev-parse HEAD:linux) tinyconfig
