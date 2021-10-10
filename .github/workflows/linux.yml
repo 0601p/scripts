@@ -1,16 +1,16 @@
-name: CI
+name: linux
 
 on:
   push:
     branches: [ csi2115-f21 ]
-  pull_request:
-    branches: [ csi2115-f21 ]
+    paths:
+      - 'linux'
   workflow_dispatch:
 
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
 
