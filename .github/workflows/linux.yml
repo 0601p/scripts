@@ -2,7 +2,7 @@ name: linux
 
 on:
   push:
-    branches: [ csi2115-f21 ]
+    branches: [ main ]
     paths:
       - 'linux'
   workflow_dispatch:
