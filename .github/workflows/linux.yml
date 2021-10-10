@@ -1,0 +1,27 @@
+name: CI
+
+on:
+  push:
+    branches: [ csi2115-f21 ]
+  pull_request:
+    branches: [ csi2115-f21 ]
+  workflow_dispatch:
+
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: install deps
+        run: ./install-deps.sh
+      
+      - name: download linux repository
+        run: wget https://github.com/0601p/linux/archive/${GITHUB_REF#refs/heads/}.zip
+
+      - name: unzip linux repository
+        run: unzip ${GITHUB_REF#refs/heads/}.zip
+        
+      - name: build linux
+        run: ./build-linux.sh ${GITHUB_REF#refs/heads/} tinyconfig
